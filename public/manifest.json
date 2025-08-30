@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Clarity Extension",
+  "version": "0.0.1",
+  "description": "Basic cross-browser extension built with TypeScript and Vite",
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": ["<all_urls>", "https://api.openai.com/*"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-script.js"]
+    }
+  ]
+}
