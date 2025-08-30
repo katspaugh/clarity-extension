@@ -8,11 +8,14 @@ const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
 // markup and `summary` providing an optional summary of the page.
 browser.runtime.onMessage.addListener(async (msg) => {
   if (msg.type === 'process-html') {
-    const prompt = `You will be given the full HTML of a web page. Remove any\n` +
-      `nagging popups, ads, and cookie banners. Improve accessibility and\n` +
-      `readability while preserving the original design concept and colour\n` +
-      `palette when possible. If the page is long, return a short summary.\n` +
-      `Respond with a JSON object: {"html": string, "summary": string}.`;
+    const prompt =
+      `You will be given the full HTML of a web page. Remove nagging popups, ads,` +
+      ` cookie banners, and decorative elements that distract from the main` +
+      ` content. Simplify the layout to prioritise text, improve typography and` +
+      ` spacing for readability, and aim for the clarity of Safari's Reader` +
+      ` view while keeping the original design concept and colour palette when` +
+      ` possible. If the page is long, return a short summary. Respond with a` +
+      ` JSON object: {"html": string, "summary": string}.`;
 
     if (!apiKey) {
       console.error('Missing VITE_OPENAI_API_KEY');
